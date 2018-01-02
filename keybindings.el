@@ -36,11 +36,6 @@
 ;; Cycle theme
 (global-set-key (kbd "M-m T n") 'rogue-cycle-theme)
 
-;; Mail stuff
-(define-key mu4e-compose-mode-map (kbd "C-c C-c") 'rogue-mu4e-sign-and-send)
-(define-key mu4e-compose-mode-map (kbd "C-c e") 'mml-secure-encrypt-pgp)
-(define-key mu4e-view-mode-map (kbd "C-c d") 'epa-mail-decrypt)
-
 ;; Some resets
 (global-set-key (kbd "C-x C-l") nil)
 (global-set-key (kbd "<insert>") nil)

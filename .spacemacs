@@ -10,7 +10,8 @@ values."
    dotspacemacs-distribution 'spacemacs
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
-   '(bibtex
+   '(
+     phpbibtex
      c-c++
      common-lisp
      csv
@@ -56,7 +57,6 @@ values."
      imenu-list
      (mu4e :variables mu4e-installation-path "/usr/share/emacs/site-lisp/mu4e")
      nlinum
-     pandoc
      pdf-tools
      prodigy
      (ranger :variables ranger-show-preview t)
@@ -86,16 +86,15 @@ values."
    dotspacemacs-elpa-https t
    dotspacemacs-elpa-timeout 5
    dotspacemacs-check-for-update t
-   dotspacemacs-editing-style '(hybrid :variables
-                                       hybrid-mode-default-state 'hybrid)
+   dotspacemacs-editing-style 'vim
    dotspacemacs-verbose-loading nil
-   dotspacemacs-startup-banner "~/cfg/avatar/avatar256-white.png"
+   dotspacemacs-startup-banner 'official
    dotspacemacs-startup-lists '(recents projects)
    dotspacemacs-startup-recent-list-size 5
    dotspacemacs-scratch-mode 'org-mode
    dotspacemacs-themes '(doom-molokai spacemacs-light)
    dotspacemacs-colorize-cursor-according-to-state nil
-   dotspacemacs-default-font '("Iosevka"
+   dotspacemacs-default-font '("Fura Code Regular Nerd Font"
                                :size 12
                                :weight regular
                                :width normal
@@ -146,14 +145,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Directories
   (defconst user-layer-dir (file-name-as-directory "~/.emacs.d/private/rogue"))
   (defconst user-secrets-dir (file-name-as-directory (concat user-layer-dir "secrets")))
-  (defconst user-journal-dir (file-name-as-directory (getenv "JOURNAL_DIR")))
-  (defconst user-diary-dir (file-name-as-directory (concat user-journal-dir "diary")))
   (defconst user-project-dir (file-name-as-directory (getenv "PROJECTS_DIR")))
 
   (defconst user-project-file (concat user-project-dir "dev/projects.org"))
-  (defconst user-books-file (concat user-project-dir "reading-list/reading-list.org"))
-  (defconst user-bookmarks-file (concat user-journal-dir "bookmarks.org"))
-  (defconst user-gcal-file (concat user-journal-dir "gcal.org"))
   ;; Separate custom stuff
   (setq custom-file "~/.emacs-custom.el")
   (load custom-file))
@@ -190,3 +184,188 @@ you should place you code here."
                  slime-sbcl-exts
                  slime-scratch
                  slime-tramp)))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (ob-async org-gcal zeal-at-point yapfify yaml-mode xterm-color xkcd ws-butler writegood-mode winum vue-mode edit-indirect ssass-mode vue-html-mode volatile-highlights vmd-mode uuidgen utop unfill typo tuareg caml toc-org tide typescript-mode swiper sql-indent spotify spaceline powerline solaire-mode snakemake-mode smeargle slime-company slime shell-switcher shell-pop rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restclient-helm restart-emacs read-lyrics rbenv ranger rake rainbow-mode rainbow-identifiers rainbow-delimiters racket-mode faceup pyvenv pytest pyenv-mode py-isort prodigy pretty-mode popwin pip-requirements persp-mode parinfer paradox spinner pandoc-mode ox-reveal ox-pandoc ox-gfm orgit org-ref pdf-tools key-chord ivy tablist org-projectile org-category-capture org-pretty-table org-present org-pomodoro org-journal request-deferred deferred org-expand org-download org-cliplink org-bullets org-books emojify open-junk-file ocp-indent ob-restclient ob-http org-plus-contrib nov esxml nlinum-relative nlinum neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode minitest merlin markdown-toc markdown-mode magit-gitflow magit-gh-pulls lorem-ipsum live-py-mode link-hint intero insert-shebang info+ indent-guide imenu-list ibuffer-projectile hyperbole hy-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt helm-spotify multi helm-pydoc helm-hoogle helm-gitignore helm-dash helm-company helm-c-yasnippet helm-bibtex parsebib haskell-snippets hackernews gscholar-bibtex graphviz-dot-mode google-translate golden-ratio gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md geiser fuzzy focus flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck-haskell flycheck flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit ghub let-alist with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-ediff evil-args evil-anzu anzu eval-sexp-fu highlight ess-smart-equals ess-R-data-view ctable ess julia-mode esi request alert log4e gntp eshell-z eshell-prompt-extras esh-help erlang elnode db fakir creole kv noflet web dumb-jump disaster dired-subtree dired-hacks-utils diff-hl define-word cython-mode csv-mode cricbuzz enlive company-web web-completion-data company-tern dash-functional tern company-statistics company-shell company-restclient restclient know-your-http-well company-quickhelp pos-tip company-ghci company-ghc ghc haskell-mode company-cabal company-c-headers company-auctex company-anaconda company common-lisp-snippets column-enforce-mode colormaps color-identifiers-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby calfw-org calfw bundler inf-ruby browse-at-remote biblio biblio-core beacon seq auto-yasnippet auto-highlight-symbol auto-dictionary auctex anaconda-mode pythonic f aggressive-indent adaptive-wrap ace-link ac-ispell auto-complete doom-themes which-key web-mode web-beautify use-package tagedit slim-mode scss-mode sass-mode pug-mode pcre2el macrostep livid-mode less-css-mode json-mode js2-refactor js-doc hydra help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-css-scss helm-ag exec-path-from-shell evil-visualstar evil-escape emmet-mode elisp-slime-nav diminish coffee-mode bind-map auto-compile ace-window ace-jump-helm-line))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:background "#191d25"))))
+ '(cfw:face-annotation ((t (:foreground "#7b87a0"))))
+ '(cfw:face-day-title ((t (:foreground "#7b87a0"))))
+ '(cfw:face-default-content ((t (:foreground "#5E81AC"))))
+ '(cfw:face-default-day ((t (:foreground "#ECEFF4"))))
+ '(cfw:face-disable ((t (:foreground "#7b87a0"))))
+ '(cfw:face-grid ((t (:foreground "#505a6f"))))
+ '(cfw:face-header ((t (:foreground "#BF616A" :weight bold))))
+ '(cfw:face-holiday ((t (:foreground "#D08770"))))
+ '(cfw:face-periods ((t (:foreground "#5E81AC"))))
+ '(cfw:face-saturday ((t (:foreground "#7b87a0" :weight bold))))
+ '(cfw:face-select ((t (:background "#434C5E"))))
+ '(cfw:face-sunday ((t (:foreground "#7b87a0"))))
+ '(cfw:face-title ((t (:height 2.0 :inherit variable-pitch :weight bold :foreground "#7b87a0"))))
+ '(cfw:face-today ((t (:background "#434C5E" :weight bold))))
+ '(cfw:face-today-title ((t (:background "#BF616A" :foreground "#ECEFF4"))))
+ '(cfw:face-toolbar ((t (:inherit default))))
+ '(cfw:face-toolbar-button-off ((t (:foreground "#7b87a0"))))
+ '(cfw:face-toolbar-button-on ((t (:foreground "#8FBCBB" :weight bold))))
+ '(company-scrollbar-bg ((t (:background "#1C2028"))))
+ '(company-scrollbar-fg ((t (:background "#505a6f"))))
+ '(company-tooltip ((t (:background "#1C2028" :foreground "#7b87a0"))))
+ '(company-tooltip-common ((t (:foreground "#BF616A"))))
+ '(company-tooltip-mouse ((t (:background "#81A1C1"))))
+ '(company-tooltip-selection ((t (:background "#242934"))))
+ '(company-tootip-annotation ((t (:foreground "#8FBCBB"))))
+ '(cursor ((t (:background "#BF616A"))))
+ '(dired-subtree-depth-1-face ((t (:background nil))))
+ '(dired-subtree-depth-2-face ((t (:background nil))))
+ '(dired-subtree-depth-3-face ((t (:background nil))))
+ '(dired-subtree-depth-4-face ((t (:background nil))))
+ '(dired-subtree-depth-5-face ((t (:background nil))))
+ '(dired-subtree-depth-6-face ((t (:background nil))))
+ '(doom-neotree-data-file-face ((t (:height 1.0 :foreground "#7b87a0"))))
+ '(doom-neotree-dir-face ((t (:foreground "#BF616A" :height 1.0))))
+ '(doom-neotree-file-face ((t (:height 1.0))))
+ '(doom-neotree-hidden-file-face ((t (:height 1.0 :foreground "#505a6f"))))
+ '(doom-neotree-media-file-face ((t (:height 1.0 :foreground "#8FBCBB"))))
+ '(doom-neotree-text-file-face ((t (:height 1.0))))
+ '(eval-sexp-fu-flash ((t (:background "#5E81AC" :foreground "#ECEFF4"))))
+ '(eval-sexp-fu-flash-error ((t (:background "#BF616A" :foreground "#ECEFF4"))))
+ '(flycheck-error ((t (:background nil))))
+ '(flycheck-warning ((t (:background nil))))
+ '(font-latex-sectioning-0-face ((t (:foreground "#8FBCBB" :height 1.2))))
+ '(font-latex-sectioning-1-face ((t (:foreground "#8FBCBB" :height 1.1))))
+ '(font-latex-sectioning-2-face ((t (:foreground "#8FBCBB" :height 1.1))))
+ '(font-latex-sectioning-3-face ((t (:foreground "#8FBCBB" :height 1.0))))
+ '(font-latex-sectioning-4-face ((t (:foreground "#8FBCBB" :height 1.0))))
+ '(font-latex-sectioning-5-face ((t (:foreground "#8FBCBB" :height 1.0))))
+ '(font-latex-verbatim-face ((t (:foreground "#D08770"))))
+ '(font-lock-builtin-face ((t (:foreground "#D08770"))))
+ '(font-lock-comment-face ((t (:foreground "#7b87a0" :slant italic))))
+ '(font-lock-constant-face ((t (:foreground "#B48EAD"))))
+ '(font-lock-doc-face ((t (:foreground "#7b87a0"))))
+ '(font-lock-function-name-face ((t (:foreground "#88C0D0"))))
+ '(font-lock-keyword-face ((t (:foreground "#BF616A"))))
+ '(font-lock-string-face ((t (:foreground "#A3BE8C"))))
+ '(font-lock-type-face ((t (:foreground "#8FBCBB"))))
+ '(font-lock-variable-name-face ((t (:foreground "#EBCB8B"))))
+ '(git-gutter-fr:added ((t (:foreground "#A3BE8C"))))
+ '(git-gutter-fr:modified ((t (:foreground "#5E81AC"))))
+ '(hackernews-comment-count ((t (:foreground "#A3BE8C"))))
+ '(hackernews-link ((t (:foreground "#81A1C1"))))
+ '(header-line ((t (:background nil :inherit nil))))
+ '(helm-M-x-key ((t (:foreground "#D08770"))))
+ '(helm-ff-directory ((t (:foreground "#D08770"))))
+ '(helm-ff-dotted-symlink-directory ((t (:background nil))))
+ '(helm-ff-prefix ((t (:foreground "#BF616A"))))
+ '(helm-ff-symlink ((t (:foreground "#81A1C1"))))
+ '(helm-grep-match ((t (:foreground "#B48EAD"))))
+ '(helm-match ((t (:foreground "#BF616A"))))
+ '(helm-selection ((t (:background "#242934"))))
+ '(helm-separator ((t (:foreground "#BF616A"))))
+ '(highlight ((t (:background "#20242e" :foreground "#ECEFF4"))))
+ '(hl-line ((t (:background "#20242e"))))
+ '(ido-first-match ((t (:foreground "#B48EAD"))))
+ '(link ((t (:foreground "#81A1C1"))))
+ '(magit-branch-current ((t (:foreground "#B48EAD"))))
+ '(magit-branch-local ((t (:foreground "#5E81AC"))))
+ '(magit-branch-remote ((t (:foreground "#A3BE8C"))))
+ '(magit-diff-added ((t (:background "#252822" :foreground "#88ab6b"))))
+ '(magit-diff-added-highlight ((t (:background "#31362e" :foreground "#A3BE8C"))))
+ '(magit-diff-hunk-heading ((t (:background "#434C5E" :foreground "#7b87a0"))))
+ '(magit-diff-hunk-heading-highlight ((t (:background "#434C5E" :foreground "#ECEFF4"))))
+ '(magit-diff-lines-heading ((t (:background "#D08770" :weight bold :foreground "#191d25"))))
+ '(magit-diff-removed ((t (:background "#2a2828" :foreground "#a8444d"))))
+ '(magit-diff-removed-highlight ((t (:background "#373535" :foreground "#BF616A"))))
+ '(magit-header-line ((t (:background nil :foreground "#191d25" :box nil))))
+ '(magit-log-author ((t (:foreground "#D08770"))))
+ '(magit-log-date ((t (:foreground "#5E81AC"))))
+ '(magit-section-heading ((t (:foreground "#BF616A"))))
+ '(magit-section-heading-selection ((t (:foreground "#EBCB8B"))))
+ '(minibuffer-prompt ((t (:foreground "#BF616A"))))
+ '(mode-line ((t (:background "#1C2028"))))
+ '(mode-line-inactive ((t (:background "#191d25"))))
+ '(mu4e-header-highlight-face ((t (:underline nil :background "#242934"))))
+ '(mu4e-header-key-face ((t (:foreground "#7b87a0"))))
+ '(mu4e-header-value-face ((t (:foreground "#81A1C1"))))
+ '(neo-root-dir-face ((t (:foreground "#ECEFF4" :background "#20242e" :box (:line-width 6 :color "#20242e")))))
+ '(nlinum-current-line ((t (:foreground "#D08770"))))
+ '(org-agenda-current-time ((t (:foreground "#81A1C1"))))
+ '(org-agenda-date ((t (:foreground "#7b87a0" :inherit variable-pitch))))
+ '(org-agenda-date-today ((t (:height 1.5 :foreground "#BF616A" :inherit variable-pitch))))
+ '(org-agenda-date-weekend ((t (:inherit org-agenda-date))))
+ '(org-agenda-done ((t (:inherit nil :strike-through t :foreground "#7b87a0"))))
+ '(org-agenda-structure ((t (:height 1.3 :foreground "#7b87a0" :weight normal :inherit variable-pitch))))
+ '(org-block ((t (:background "#191d25"))))
+ '(org-block-begin-line ((t (:background "#191d25"))))
+ '(org-block-end-line ((t (:background "#191d25"))))
+ '(org-code ((t (:foreground "#D08770"))))
+ '(org-date ((t (:foreground "#7b87a0"))))
+ '(org-document-info ((t (:foreground "#7b87a0" :slant italic))))
+ '(org-document-info-keyword ((t (:foreground "#505a6f"))))
+ '(org-document-title ((t (:inherit variable-pitch :height 1.3 :weight normal :foreground "#7b87a0"))))
+ '(org-done ((t (:inherit variable-pitch :foreground "#5E81AC" :background "#191d25"))))
+ '(org-ellipsis ((t (:underline nil :background "#191d25" :foreground "#505a6f"))))
+ '(org-headline-done ((t (:strike-through t))))
+ '(org-indent ((t (:inherit org-hide))))
+ '(org-level-1 ((t (:inherit variable-pitch :height 1.3 :weight bold :foreground "#BF616A" :background "#191d25"))))
+ '(org-level-2 ((t (:inherit variable-pitch :weight bold :height 1.2 :foreground "#7b87a0" :background "#191d25"))))
+ '(org-level-3 ((t (:inherit variable-pitch :weight bold :height 1.1 :foreground "#7b87a0" :background "#191d25"))))
+ '(org-level-4 ((t (:inherit variable-pitch :weight bold :height 1.1 :foreground "#7b87a0" :background "#191d25"))))
+ '(org-level-5 ((t (:inherit variable-pitch :weight bold :height 1.1 :foreground "#7b87a0" :background "#191d25"))))
+ '(org-level-6 ((t (:inherit variable-pitch :weight bold :height 1.1 :foreground "#7b87a0" :background "#191d25"))))
+ '(org-level-7 ((t (:inherit variable-pitch :weight bold :height 1.1 :foreground "#7b87a0" :background "#191d25"))))
+ '(org-level-8 ((t (:inherit variable-pitch :weight bold :height 1.1 :foreground "#7b87a0" :background "#191d25"))))
+ '(org-link ((t (:underline nil :weight normal :foreground "#81A1C1"))))
+ '(org-list-dt ((t (:foreground "#88C0D0"))))
+ '(org-quote ((t (:background "#191d25"))))
+ '(org-ref-cite-face ((t (:foreground "#D08770"))))
+ '(org-scheduled ((t (:foreground "#7b87a0"))))
+ '(org-scheduled-previously ((t (:foreground "#81A1C1"))))
+ '(org-scheduled-today ((t (:foreground "#ECEFF4"))))
+ '(org-special-keyword ((t (:height 0.9 :foreground "#505a6f"))))
+ '(org-table ((t (:background nil :foreground "#7b87a0"))))
+ '(org-tag ((t (:foreground "#7b87a0"))))
+ '(org-time-grid ((t (:foreground "#505a6f"))))
+ '(org-todo ((t (:foreground "#D08770" :background "#191d25"))))
+ '(org-upcoming-deadline ((t (:foreground "#BF616A"))))
+ '(org-warning ((t (:foreground "#D08770"))))
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "#5E81AC"))))
+ '(rainbow-delimiters-depth-2-face ((t (:foreground "#BF616A"))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "#B48EAD"))))
+ '(rainbow-delimiters-depth-4-face ((t (:foreground "#D08770"))))
+ '(rainbow-delimiters-depth-5-face ((t (:foreground "#81A1C1"))))
+ '(rainbow-delimiters-depth-6-face ((t (:foreground "#A3BE8C"))))
+ '(rainbow-delimiters-depth-7-face ((t (:foreground "#88C0D0"))))
+ '(rainbow-delimiters-depth-8-face ((t (:foreground "#EBCB8B"))))
+ '(rainbow-delimiters-depth-9-face ((t (:foreground "#8FBCBB"))))
+ '(region ((t (:background "#434C5E"))))
+ '(show-paren-match ((t (:background "#BF616A" :foreground "#191d25"))))
+ '(sldb-restartable-frame-line-face ((t (:foreground "#A3BE8C"))))
+ '(slime-repl-inputed-output-face ((t (:foreground "#BF616A"))))
+ '(solaire-default-face ((t (:background "#20242e"))))
+ '(solaire-hl-line-face ((t (:background "#20242e"))))
+ '(sp-pair-overlay-face ((t (:background "#20242e"))))
+ '(sp-show-pair-match-face ((t (:background "#505a6f" :foreground "#EBCB8B"))))
+ '(sp-wrap-overlay-face ((t (:background "#20242e"))))
+ '(spacemacs-emacs-face ((t (:background "#191d25" :foreground "#ECEFF4"))))
+ '(spacemacs-evilified-face ((t (:background "#191d25" :foreground "#ECEFF4"))))
+ '(spacemacs-hybrid-face ((t (:background "#191d25" :foreground "#ECEFF4"))))
+ '(spacemacs-lisp-face ((t (:background "#191d25" :foreground "#ECEFF4"))))
+ '(spacemacs-motion-face ((t (:background "#191d25" :foreground "#ECEFF4"))))
+ '(spacemacs-normal-face ((t (:background "#191d25" :foreground "#ECEFF4"))))
+ '(spacemacs-visual-face ((t (:background "#191d25" :foreground "#ECEFF4"))))
+ '(swiper-line-face ((t (:background "#434C5E" :foreground "#ECEFF4"))))
+ '(swiper-match-face-2 ((t (:background "#D08770"))))
+ '(tooltip ((t (:foreground "#7b87a0" :background "#1C2028"))))
+ '(variable-pitch ((t (:family "Source Sans Pro"))))
+ '(vertical-border ((t (:background "#434C5E" :foreground "#434C5E"))))
+ '(which-key-command-description-face ((t (:foreground "#8FBCBB"))))
+ '(which-key-key-face ((t (:foreground "#A3BE8C")))))

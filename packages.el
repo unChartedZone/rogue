@@ -22,20 +22,14 @@
     multiple-cursors
     nov
     ob-async
-    (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
     org-cliplink
     (org-expand :location (recipe :fetcher github :repo "lepisma/org-expand"))
     org-gcal
-    org-journal
     (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
     (org-make :location local)
     parinfer
     pretty-mode
     (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
-    (rogue-ligatures :location local)
-    (rogue-mu4e :location local)
-    (rogue-org :location local)
-    (rogue-processes :location local)
     (rogue-ui :location local)
     (rogue-utils :location local)
     shell-switcher
@@ -124,7 +118,6 @@
 (defun rogue/init-esi ()
   (use-package esi
     :config
-    (setq esi-bm-file user-bookmarks-file)
     (setq esi-music-directory (file-name-as-directory "~/Desktop"))))
 
 (defun rogue/init-focus ()
@@ -163,11 +156,6 @@
 (defun rogue/init-ob-async ()
   (use-package ob-async))
 
-(defun rogue/init-org-books ()
-  (use-package org-books
-    :config
-    (setq org-books-file user-books-file)))
-
 (defun rogue/init-org-cliplink ()
   (use-package org-cliplink
     :bind (("C-c y" . org-cliplink))))
@@ -189,12 +177,6 @@
     ;; (setq org-gcal-client-id "<>"
     ;;       org-gcal-client-secret "<>")
     (load-file (concat user-secrets-dir "gcal.el"))))
-
-(defun rogue/init-org-journal ()
-  (use-package org-journal
-    :config
-    (setq org-journal-dir user-diary-dir)
-    (setq org-journal-enable-encryption t)))
 
 (defun rogue/init-org-pretty-table ()
   (use-package org-pretty-table
@@ -251,43 +233,6 @@
   (use-package read-lyrics
     :commands (read-lyrics-read-lyrics)
     :after (s spotify)))
-
-(defun rogue/init-rogue-ligatures ()
-  (use-package rogue-ligatures
-    :after rogue-utils
-    :config
-    (rogue-ligatures-setup-general)
-    (rogue-ligatures-setup-python)
-    (rogue-ligatures-setup-ess)))
-
-(defun rogue/init-rogue-mu4e ()
-  (use-package rogue-mu4e
-    :after (authinfo mu4e)
-    :config
-    (rogue-mu4e-setup)))
-
-(defun rogue/init-rogue-org ()
-  (use-package rogue-org
-    :after org
-    :config
-    (rogue-org-setup-general)
-    (rogue-org-setup-notes)
-    (rogue-org-setup-babel)
-    (rogue-org-setup-tex)))
-
-(defun rogue/init-rogue-processes ()
-  (use-package rogue-processes
-    :after rogue-utils
-    :config
-    (rogue-processes-define "offlineimap" "-o")
-    (rogue-processes-define "mpm-play")
-    (rogue-processes-start-service "mpm-play")
-    (setq rogue-processes-git-update-dirs
-          (rogue-utils-get-project-dirs '("reading-list"
-                                          "clippings"
-                                          "til-emacs"
-                                          "dev")))
-    (rogue-processes-run-git-autoupdate-loop "10 min" 3600)))
 
 (defun rogue/init-rogue-ui ()
   (use-package rogue-ui
