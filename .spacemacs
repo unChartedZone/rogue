@@ -11,6 +11,7 @@ values."
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
    '(
+     php
      phpbibtex
      c-c++
      common-lisp
@@ -38,7 +39,6 @@ values."
      shell-scripts
      sql
      typescript
-     yaml
      ;; Assists
      (auto-completion :variables
                       auto-completion-enable-help-tooltip t
@@ -91,7 +91,7 @@ values."
    dotspacemacs-startup-banner 'official
    dotspacemacs-startup-lists '(recents projects)
    dotspacemacs-startup-recent-list-size 5
-   dotspacemacs-scratch-mode 'org-mode
+   dotspacemacs-scratch-mode 'text-mode
    dotspacemacs-themes '(doom-molokai spacemacs-light)
    dotspacemacs-colorize-cursor-according-to-state nil
    dotspacemacs-default-font '("Fura Code Regular Nerd Font"
@@ -108,7 +108,7 @@ values."
    dotspacemacs-remap-Y-to-y$ t
    dotspacemacs-default-layout-name "Default"
    dotspacemacs-display-default-layout nil
-   dotspacemacs-auto-resume-layouts t
+   dotspacemacs-auto-resume-layouts nil
    dotspacemacs-auto-save-file-location 'cache
    dotspacemacs-max-rollback-slots 5
    dotspacemacs-use-ido nil
@@ -141,16 +141,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-
-  ;; Directories
-  (defconst user-layer-dir (file-name-as-directory "~/.emacs.d/private/rogue"))
-  (defconst user-secrets-dir (file-name-as-directory (concat user-layer-dir "secrets")))
-  (defconst user-project-dir (file-name-as-directory (getenv "PROJECTS_DIR")))
-
-  (defconst user-project-file (concat user-project-dir "dev/projects.org"))
-  ;; Separate custom stuff
-  (setq custom-file "~/.emacs-custom.el")
-  (load custom-file))
+)
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -159,31 +150,8 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
+  )
 
-  (setq user-full-name "Abhinav Tushar"
-        browse-url-generic-program (executable-find (getenv "BROWSER"))
-        browse-url-browser-function 'browse-url-generic)
-
-  ;; Language specific settings
-  (setq-default web-mode-markup-indent-offset 2
-                web-mode-css-indent-offset 2
-                web-mode-code-indent-offset 2
-                css-indent-offset 2
-                js2-basic-offset 2
-                js-indent-level 2
-                js2-strict-missing-semi-warning nil
-                js2-missing-semi-one-line-override nil
-                typescript-indent-level 2)
-
-  (setq inferior-lisp-program "ros -Q run")
-
-  (slime-setup '(slime-asdf
-                 slime-company
-                 slime-fancy
-                 slime-indentation
-                 slime-sbcl-exts
-                 slime-scratch
-                 slime-tramp)))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -191,7 +159,7 @@ you should place you code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ob-async org-gcal zeal-at-point yapfify yaml-mode xterm-color xkcd ws-butler writegood-mode winum vue-mode edit-indirect ssass-mode vue-html-mode volatile-highlights vmd-mode uuidgen utop unfill typo tuareg caml toc-org tide typescript-mode swiper sql-indent spotify spaceline powerline solaire-mode snakemake-mode smeargle slime-company slime shell-switcher shell-pop rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restclient-helm restart-emacs read-lyrics rbenv ranger rake rainbow-mode rainbow-identifiers rainbow-delimiters racket-mode faceup pyvenv pytest pyenv-mode py-isort prodigy pretty-mode popwin pip-requirements persp-mode parinfer paradox spinner pandoc-mode ox-reveal ox-pandoc ox-gfm orgit org-ref pdf-tools key-chord ivy tablist org-projectile org-category-capture org-pretty-table org-present org-pomodoro org-journal request-deferred deferred org-expand org-download org-cliplink org-bullets org-books emojify open-junk-file ocp-indent ob-restclient ob-http org-plus-contrib nov esxml nlinum-relative nlinum neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode minitest merlin markdown-toc markdown-mode magit-gitflow magit-gh-pulls lorem-ipsum live-py-mode link-hint intero insert-shebang info+ indent-guide imenu-list ibuffer-projectile hyperbole hy-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt helm-spotify multi helm-pydoc helm-hoogle helm-gitignore helm-dash helm-company helm-c-yasnippet helm-bibtex parsebib haskell-snippets hackernews gscholar-bibtex graphviz-dot-mode google-translate golden-ratio gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md geiser fuzzy focus flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck-haskell flycheck flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit ghub let-alist with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-ediff evil-args evil-anzu anzu eval-sexp-fu highlight ess-smart-equals ess-R-data-view ctable ess julia-mode esi request alert log4e gntp eshell-z eshell-prompt-extras esh-help erlang elnode db fakir creole kv noflet web dumb-jump disaster dired-subtree dired-hacks-utils diff-hl define-word cython-mode csv-mode cricbuzz enlive company-web web-completion-data company-tern dash-functional tern company-statistics company-shell company-restclient restclient know-your-http-well company-quickhelp pos-tip company-ghci company-ghc ghc haskell-mode company-cabal company-c-headers company-auctex company-anaconda company common-lisp-snippets column-enforce-mode colormaps color-identifiers-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby calfw-org calfw bundler inf-ruby browse-at-remote biblio biblio-core beacon seq auto-yasnippet auto-highlight-symbol auto-dictionary auctex anaconda-mode pythonic f aggressive-indent adaptive-wrap ace-link ac-ispell auto-complete doom-themes which-key web-mode web-beautify use-package tagedit slim-mode scss-mode sass-mode pug-mode pcre2el macrostep livid-mode less-css-mode json-mode js2-refactor js-doc hydra help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-css-scss helm-ag exec-path-from-shell evil-visualstar evil-escape emmet-mode elisp-slime-nav diminish coffee-mode bind-map auto-compile ace-window ace-jump-helm-line))))
+    (phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode ob-async org-gcal zeal-at-point yapfify yaml-mode xterm-color xkcd ws-butler writegood-mode winum vue-mode edit-indirect ssass-mode vue-html-mode volatile-highlights vmd-mode uuidgen utop unfill typo tuareg caml toc-org tide typescript-mode swiper sql-indent spotify spaceline powerline solaire-mode snakemake-mode smeargle slime-company slime shell-switcher shell-pop rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restclient-helm restart-emacs read-lyrics rbenv ranger rake rainbow-mode rainbow-identifiers rainbow-delimiters racket-mode faceup pyvenv pytest pyenv-mode py-isort prodigy pretty-mode popwin pip-requirements persp-mode parinfer paradox spinner pandoc-mode ox-reveal ox-pandoc ox-gfm orgit org-ref pdf-tools key-chord ivy tablist org-projectile org-category-capture org-pretty-table org-present org-pomodoro org-journal request-deferred deferred org-expand org-download org-cliplink org-bullets org-books emojify open-junk-file ocp-indent ob-restclient ob-http org-plus-contrib nov esxml nlinum-relative nlinum neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode minitest merlin markdown-toc markdown-mode magit-gitflow magit-gh-pulls lorem-ipsum live-py-mode link-hint intero insert-shebang info+ indent-guide imenu-list ibuffer-projectile hyperbole hy-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt helm-spotify multi helm-pydoc helm-hoogle helm-gitignore helm-dash helm-company helm-c-yasnippet helm-bibtex parsebib haskell-snippets hackernews gscholar-bibtex graphviz-dot-mode google-translate golden-ratio gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md geiser fuzzy focus flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck-haskell flycheck flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit ghub let-alist with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-ediff evil-args evil-anzu anzu eval-sexp-fu highlight ess-smart-equals ess-R-data-view ctable ess julia-mode esi request alert log4e gntp eshell-z eshell-prompt-extras esh-help erlang elnode db fakir creole kv noflet web dumb-jump disaster dired-subtree dired-hacks-utils diff-hl define-word cython-mode csv-mode cricbuzz enlive company-web web-completion-data company-tern dash-functional tern company-statistics company-shell company-restclient restclient know-your-http-well company-quickhelp pos-tip company-ghci company-ghc ghc haskell-mode company-cabal company-c-headers company-auctex company-anaconda company common-lisp-snippets column-enforce-mode colormaps color-identifiers-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby calfw-org calfw bundler inf-ruby browse-at-remote biblio biblio-core beacon seq auto-yasnippet auto-highlight-symbol auto-dictionary auctex anaconda-mode pythonic f aggressive-indent adaptive-wrap ace-link ac-ispell auto-complete doom-themes which-key web-mode web-beautify use-package tagedit slim-mode scss-mode sass-mode pug-mode pcre2el macrostep livid-mode less-css-mode json-mode js2-refactor js-doc hydra help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-css-scss helm-ag exec-path-from-shell evil-visualstar evil-escape emmet-mode elisp-slime-nav diminish coffee-mode bind-map auto-compile ace-window ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
