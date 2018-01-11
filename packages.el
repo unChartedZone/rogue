@@ -5,22 +5,18 @@
     (authinfo :location local)
     dired-subtree
     doom-themes
-    (mpm :location local)
     multiple-cursors
     nov
     org-cliplink
     (org-expand :location (recipe :fetcher github :repo "lepisma/org-expand"))
     (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
-    (org-make :location local)
     pretty-mode
     (rogue-ui :location local)
     (rogue-utils :location local)
     solaire-mode
     (spaceline-all-the-icons :location local)
     swiper
-    (viz :location local)
-    (weather-amherst :location local)
-    writegood-mode))
+    mritegood-mode))
 
 ;; Initialize packages
 (defun rogue/init-all-the-icons ()
