@@ -45,16 +45,6 @@
           doom-neotree-line-spacing 4)
     (doom-themes-org-config)))
 
-(defun rogue/init-mpm ()
-  (use-package mpm
-    :after org-cliplink))
-
-(defun rogue/init-multiple-cursors ()
-  (use-package multiple-cursors
-    :bind (("C->" . mc/mark-next-like-this)
-           ("C-<" . mc/mark-previous-like-this)
-           ("C-M-<mouse-1>" . mc/add-cursor-on-click))))
-
 (defun rogue/init-nov ()
   (use-package nov
     :config
