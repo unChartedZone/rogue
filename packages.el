@@ -3,10 +3,7 @@
 (defconst rogue-packages
   '(all-the-icons
     (authinfo :location local)
-    dired-subtree
     doom-themes
-    multiple-cursors
-    nov
     org-cliplink
     (org-expand :location (recipe :fetcher github :repo "lepisma/org-expand"))
     (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
@@ -14,9 +11,7 @@
     (rogue-ui :location local)
     (rogue-utils :location local)
     solaire-mode
-    (spaceline-all-the-icons :location local)
-    swiper
-    mritegood-mode))
+    (spaceline-all-the-icons :location local)))
 
 ;; Initialize packages
 (defun rogue/init-all-the-icons ()
@@ -25,13 +20,6 @@
 (defun rogue/init-authinfo ()
   (use-package authinfo
     :after (s dash-functional)))
-
-(defun rogue/init-dired-subtree ()
-  (use-package dired-subtree :ensure t
-    :after ranger
-    :config
-    (bind-key "<tab>" 'dired-subtree-toggle ranger-mode-map)
-    (bind-key "<backtab>" 'dired-subtree-cycle ranger-mode-map)))
 
 (defun rogue/init-doom-themes ()
   (use-package doom-themes
@@ -44,12 +32,6 @@
           doom-neotree-file-icons 'simple
           doom-neotree-line-spacing 4)
     (doom-themes-org-config)))
-
-(defun rogue/init-nov ()
-  (use-package nov
-    :config
-    (push '("\\.epub\\'" . nov-mode) auto-mode-alist)
-    (setq nov-text-width 80)))
 
 (defun rogue/init-org-cliplink ()
   (use-package org-cliplink
@@ -117,19 +99,3 @@
       :config
       (setq-default mode-line-format '("%e" (:eval (spaceline-ml-ati)))))))
 
-(defun rogue/init-swiper ()
-  (use-package swiper
-    :bind (("C-s" . swiper)
-           ("C-r" . swiper))))
-
-(defun rogue/init-viz ()
-  (use-package viz
-    :defer t))
-
-(defun rogue/init-writegood-mode ()
-  (use-package writegood-mode
-    :defer t))
-
-(defun rogue/init-weather-amherst ()
-  (use-package weather-amherst
-    :bind (("C-c w" . weather-amherst))))

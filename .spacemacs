@@ -150,7 +150,11 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
-  )
+
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
+)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
