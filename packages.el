@@ -4,10 +4,6 @@
   '(all-the-icons
     (authinfo :location local)
     doom-themes
-    org-cliplink
-    (org-expand :location (recipe :fetcher github :repo "lepisma/org-expand"))
-    (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
-    pretty-mode
     (rogue-ui :location local)
     (rogue-utils :location local)
     solaire-mode
@@ -32,48 +28,6 @@
           doom-neotree-file-icons 'simple
           doom-neotree-line-spacing 4)
     (doom-themes-org-config)))
-
-(defun rogue/init-org-cliplink ()
-  (use-package org-cliplink
-    :bind (("C-c y" . org-cliplink))))
-
-(defun rogue/init-org-expand ()
-  (use-package org-expand
-    :bind (("C-c x" . helm-org-expand))))
-
-(defun rogue/init-org-pretty-table ()
-  (use-package org-pretty-table
-    :demand t
-    :init
-    (add-hook 'org-mode-hook (lambda () (org-pretty-table-mode 1)))))
-
-(defun rogue/init-org-make ()
-  (use-package org-make
-    :after org))
-
-(defun rogue/init-pretty-mode ()
-  (use-package pretty-mode
-    :config
-    (global-pretty-mode t)
-    (global-prettify-symbols-mode 1)
-
-    (pretty-deactivate-groups
-     '(:equality
-       :ordering
-       :ordering-double
-       :ordering-triple
-       :arrows
-       :arrows-twoheaded
-       :punctuation
-       :logic
-       :sets
-       :sub-and-superscripts
-       :subscripts
-       :arithmetic-double
-       :arithmetic-triple))
-
-    (pretty-activate-groups
-     '(:greek :arithmetic-nary))))
 
 (defun rogue/init-rogue-ui ()
   (use-package rogue-ui
