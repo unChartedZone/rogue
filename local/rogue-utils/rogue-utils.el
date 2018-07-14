@@ -29,8 +29,6 @@
 
 ;;; Code:
 
-(require 'dash-functional)
-
 ;;;###autoload
 (defun rogue-utils-add-hooks (hooks fun)
   "Add FUN to all the HOOKS."
