@@ -156,18 +156,12 @@
 
   (setq alert-default-style 'libnotify))
 
-(defun rogue-ui-setup-minibuffer ()
-  "Fix minibuffer and surrounding area."
-  (advice-add 'helm-display-mode-line
-              :override (lambda (source &optional force) (rogue-ui-hide-mode-line))))
-
 (defun rogue-ui-setup ()
   "Setup everything."
 
   (rogue-ui-setup-fringe)
   (rogue-ui-setup-ibuffer)
   (rogue-ui-setup-misc)
-  (rogue-ui-setup-minibuffer)
 
   ;; Hooks for side gaps
   (rogue-utils-add-hooks '(cfw:calendar-mode-hook
