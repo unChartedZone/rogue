@@ -79,7 +79,7 @@ values."
    dotspacemacs-scratch-mode 'text-mode
    dotspacemacs-themes '(doom-molokai spacemacs-light)
    dotspacemacs-colorize-cursor-according-to-state nil
-   dotspacemacs-default-font '("Fura Code Regular Nerd Font"
+   dotspacemacs-default-font '("Menlo"
                                :size 12
                                :weight regular
                                :width normal
@@ -139,6 +139,8 @@ you should place you code here."
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
+
+(setq frame-resize-pixelwise t)
 )
 
 (custom-set-variables
