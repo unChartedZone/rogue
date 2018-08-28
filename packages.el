@@ -25,7 +25,7 @@
 
     (doom-themes-neotree-config)
     (setq doom-neotree-enable-variable-pitch t
-          doom-neotree-file-icons 'simple
+		  doom-neotree-enable-file-icons t
           doom-neotree-line-spacing 4)
     (doom-themes-org-config)))
 
