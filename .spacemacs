@@ -36,7 +36,6 @@ values."
      better-defaults
      colors
      git
-     github
      (ranger :variables ranger-show-preview t)
      rogue
      (spell-checking :variables spell-checking-enable-by-default nil)
