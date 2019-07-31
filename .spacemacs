@@ -132,6 +132,8 @@ you should place you code here."
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
 
 (setq frame-resize-pixelwise t)
+
+(require 'org-tempo)
 )
 
 (custom-set-variables

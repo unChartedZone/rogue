@@ -4,6 +4,7 @@
   '(all-the-icons
     (authinfo :location local)
     doom-themes
+    org-re-reveal
     (rogue-ui :location local)
     (rogue-utils :location local)
     solaire-mode
@@ -28,6 +29,9 @@
 		  doom-neotree-enable-file-icons t
           doom-neotree-line-spacing 4)
     (doom-themes-org-config)))
+
+(defun rogue/init-org-re-reveal ()
+  (use-package org-re-reveal))
 
 (defun rogue/init-rogue-ui ()
   (use-package rogue-ui
